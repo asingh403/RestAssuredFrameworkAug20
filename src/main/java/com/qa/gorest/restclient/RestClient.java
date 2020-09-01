@@ -5,6 +5,8 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.Map;
 
+import com.qa.gorest.util.TestUtil;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -21,20 +23,81 @@ import static org.hamcrest.Matchers.*;
 
 public class RestClient {
 
+	/**
+	 * This method is used to call GET API
+	 * @param contentType
+	 * @param baseURI
+	 * @param basePath
+	 * @param token
+	 * @param paramsMap
+	 * @param log
+	 * @return This method returning the reponse from the GET call	
+	 */
+	
 	public static Response doGet(String contentType, String baseURI, String basePath, String token,
 			Map<String, String> paramsMap, boolean log) {
 
-		setBaseURI(baseURI);
-		RequestSpecification request = createRequest(contentType, token, paramsMap, log);
 		
-		return getResponse("GET", request, basePath);
+		if(setBaseURI(baseURI)) {
+			setBaseURI(baseURI);
+			RequestSpecification request = createRequest(contentType, token, paramsMap, log);
+			
+			return getResponse("GET", request, basePath);
+			
+		}
+		
+		return null;
 	}
+		
+	
+	/**
+	 * This method is used to call POST API
+	 * @param contentType
+	 * @param baseURI
+	 * @param basePath
+	 * @param token
+	 * @param paramsMap
+	 * @param log
+	 * @param obj
+	 * @return This method is returning response from POST call.
+	 */
+		
+		public static Response doPost(String contentType, String baseURI, String basePath, String token,
+				Map<String, String> paramsMap, boolean log, Object obj) {
 
-	public static void setBaseURI(String baseURI) {
+			
+			if(setBaseURI(baseURI)) {
+
+				RequestSpecification request = createRequest(contentType, token, paramsMap, log);
+				addRequestPayLoad(request, obj);
+				return getResponse("POST", request, basePath);
+			}
+			return null;
+	}
+		
+		public static void addRequestPayLoad(RequestSpecification request, Object obj) {
+			String jsonPayload = TestUtil.getSerializedJSON(obj);
+			request.body(jsonPayload);
+		}
+		
+
+	private static boolean setBaseURI(String baseURI) {
+		if(baseURI == null || baseURI.isEmpty()) {
+			System.out.println("Please pass the correct baseURI. . . either it is null or blank/empty. . .");
+			return false;
+		}
+		
+		try {
 		RestAssured.baseURI = baseURI;
+		return true;
+		
+		}catch(Exception e) {
+			System.out.println("Some exception got Occured while assiging the base URL with RestAssured");
+			return false;
+		}
 	}
 
-	public static RequestSpecification createRequest(String contentType, String token, Map<String, String> paramsMap,boolean log) {
+	private static RequestSpecification createRequest(String contentType, String token, Map<String, String> paramsMap,boolean log) {
 		
 		
 		RequestSpecification request;
@@ -71,11 +134,11 @@ public class RestClient {
 	}
 	
 	
-	public static Response getResponse(String httpMethod, RequestSpecification request, String basePath) {
+	private static Response getResponse(String httpMethod, RequestSpecification request, String basePath) {
 		return executeAPI(httpMethod, request, basePath);
 	}
 	
-	public static Response executeAPI(String httpMethod, RequestSpecification request, String basePath) {
+	private static Response executeAPI(String httpMethod, RequestSpecification request, String basePath) {
 		
 		Response response = null;
 		switch (httpMethod) {
