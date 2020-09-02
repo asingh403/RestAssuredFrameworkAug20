@@ -116,6 +116,10 @@ public class RestClient {
 			request.queryParams(paramsMap);
 		}
 
+		
+		
+		if(contentType !=null) {
+		
 		if (contentType.equalsIgnoreCase("JSON")) {
 			
 						request.contentType(ContentType.JSON);
@@ -128,7 +132,8 @@ public class RestClient {
 			(contentType.equalsIgnoreCase("TEXT")) {
 						request.contentType(ContentType.TEXT);
 		}
-
+	}
+		
 		return request;
 
 	}

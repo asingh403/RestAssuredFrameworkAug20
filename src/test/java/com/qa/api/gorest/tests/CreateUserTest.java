@@ -9,6 +9,11 @@ import com.qa.gorest.util.ExcelUtil;
 
 import io.restassured.response.Response;
 
+/**
+ * 
+ * @author ASHUTOSH SINGH
+ *
+ */
 public class CreateUserTest {
 	
 	String baseURI = "https://gorest.co.in";
@@ -25,8 +30,6 @@ public class CreateUserTest {
 	
 	@Test(dataProvider = "getUserData")
 	public void createUserAPIPOSTTest(String name, String email, String gender, String status) {
-		
-//		User user = new User("Aditya Sharma", "adi@google.in", "Male", "Active");
 		
 		User user = new User(name,  email,  gender,  status);
 		Response response = RestClient.doPost("JSON", baseURI, basePath, token, null, true, user);
