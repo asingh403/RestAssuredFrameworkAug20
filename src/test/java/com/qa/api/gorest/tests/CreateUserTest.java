@@ -1,5 +1,8 @@
 package com.qa.api.gorest.tests;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -31,8 +34,11 @@ public class CreateUserTest {
 	@Test(dataProvider = "getUserData")
 	public void createUserAPIPOSTTest(String name, String email, String gender, String status) {
 		
+		Map<String, String> authTokenMap = new HashMap<String, String>();
+		authTokenMap.put("Authorization", "Bearer "+ token);
+		
 		User user = new User(name,  email,  gender,  status);
-		Response response = RestClient.doPost("JSON", baseURI, basePath, token, null, true, user);
+		Response response = RestClient.doPost("JSON", baseURI, basePath, authTokenMap, null, true, user);
 		
 		System.out.println(response.getStatusCode());
 		System.out.println(response.prettyPrint());

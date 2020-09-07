@@ -3,11 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.api.gorest.tests.GetUserTest">
+      <class name="com.qa.api.gorest.tests.GetImgurAPITest">
         <methods>
-          <include name="getAllUserListAPITest"/>
+          <include name="setUp"/>
+          <include name="getAccountBlockStatusTest"/>
+          <include name="getAccountImagesTest"/>
         </methods>
-      </class> <!-- com.qa.api.gorest.tests.GetUserTest -->
+      </class> <!-- com.qa.api.gorest.tests.GetImgurAPITest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,5 +1,6 @@
 package com.qa.api.gorest.tests;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.annotations.BeforeMethod;
@@ -33,7 +34,9 @@ public class GetImgurAPITest {
 		String baseURI = "https://api.imgur.com/account";
 		String basePath =  "/v1/"+accountUserName+"/block";
 		
-		Response response = RestClient.doGet(null, baseURI, basePath, accessToken, null, true);
+		Map<String, String> authTokenMap=Token.getAuthToken();
+		
+		Response response = RestClient.doGet(null, baseURI, basePath, authTokenMap, null, true);
 		System.out.println(response.statusCode());
 		System.out.println(response.prettyPrint());
 		
@@ -43,8 +46,23 @@ public class GetImgurAPITest {
 		
 		String baseURI = "https://api.imgur.com";
 		String basePath =  "/3/account/me/images";
+		Map<String, String> authTokenMap=Token.getAuthToken();
+		Response response = RestClient.doGet(null, baseURI, basePath, authTokenMap, null, true);
+		System.out.println(response.statusCode());
+		System.out.println(response.prettyPrint());
 		
-		Response response = RestClient.doGet(null, baseURI, basePath, accessToken, null, true);
+	}
+	
+	@Test
+	public void uploadImagePostAPITest() {
+		Map<String, String> clientMap = Token.getClientId();
+		
+		Map<String, String> formMap = new HashMap<String, String>();
+		formMap.put("title", "test title API");
+		formMap.put("description", "test description API");
+		
+		Response response = RestClient.doPost("multipart", "https://api.imgur.com", "/3/image", clientMap, null, true, formMap);
+		
 		System.out.println(response.statusCode());
 		System.out.println(response.prettyPrint());
 		

@@ -11,6 +11,9 @@ import io.restassured.path.json.JsonPath;
 
 public class Token {
 	
+	public static Map<Object, Object> appTokenMap;
+	public static Map<String, String> tokenMap = new HashMap<String, String>();
+	public static String clientId = "66f4918ab1b4d24";
 	
 	public static Map<Object, Object> getAccessToken() {
 
@@ -23,15 +26,30 @@ public class Token {
 		JsonPath tokenJson= 
 		given()
 			.formParams(formParams)
-				.when()
-					.post("https://api.imgur.com/oauth2/token")
-					.then()
-						.extract().jsonPath();
+				.when().post("https://api.imgur.com/oauth2/token")
+			    .then()
+				.extract()
+				.jsonPath();
 		
 		System.out.println(tokenJson.getMap(""));
 		
-		return tokenJson.getMap("");
+		appTokenMap = tokenJson.getMap("");
+		
+		return appTokenMap;
 			
+	}
+	
+	public static Map<String, String> getAuthToken() {
+		String authToken = appTokenMap.get("access_token").toString();
+		System.out.println("Auth Token =======> " + authToken);
+		tokenMap.put("Authorization", "Bearer "+authToken);
+		return tokenMap;
+	}
+	
+	public static Map<String, String> getClientId() {
+		System.out.println("Client Id is =======> " + clientId);
+		tokenMap.put("Authorization", "Client-ID "+clientId);
+		return tokenMap;
 	}
 	
 

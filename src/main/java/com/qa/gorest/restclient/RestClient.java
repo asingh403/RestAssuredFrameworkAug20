@@ -3,6 +3,7 @@ package com.qa.gorest.restclient;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.File;
 import java.util.Map;
 
 import com.qa.gorest.util.TestUtil;
@@ -34,7 +35,7 @@ public class RestClient {
 	 * @return This method returning the reponse from the GET call	
 	 */
 	
-	public static Response doGet(String contentType, String baseURI, String basePath, String token,
+	public static Response doGet(String contentType, String baseURI, String basePath, Map<String, String> token,
 			Map<String, String> paramsMap, boolean log) {
 
 		
@@ -62,12 +63,12 @@ public class RestClient {
 	 * @return This method is returning response from POST call.
 	 */
 		
-		public static Response doPost(String contentType, String baseURI, String basePath, String token,
+		public static Response doPost(String contentType, String baseURI, String basePath, Map<String, String> token,
 				Map<String, String> paramsMap, boolean log, Object obj) {
 
 			
 			if(setBaseURI(baseURI)) {
-
+				
 				RequestSpecification request = createRequest(contentType, token, paramsMap, log);
 				addRequestPayLoad(request, obj);
 				return getResponse("POST", request, basePath);
@@ -76,8 +77,13 @@ public class RestClient {
 	}
 		
 		public static void addRequestPayLoad(RequestSpecification request, Object obj) {
-			String jsonPayload = TestUtil.getSerializedJSON(obj);
-			request.body(jsonPayload);
+			if(obj instanceof Map) {
+				request.formParams((Map<String, String>)obj);
+			}else {
+			
+				String jsonPayload = TestUtil.getSerializedJSON(obj);
+			    request.body(jsonPayload);
+			}
 		}
 		
 
@@ -97,7 +103,7 @@ public class RestClient {
 		}
 	}
 
-	private static RequestSpecification createRequest(String contentType, String token, Map<String, String> paramsMap,boolean log) {
+	private static RequestSpecification createRequest(String contentType, Map<String, String> token, Map<String, String> paramsMap,boolean log) {
 		
 		
 		RequestSpecification request;
@@ -108,8 +114,10 @@ public class RestClient {
 			request = RestAssured.given();
 		}
 
-		if (token != null) {
-			request.header("Authorization", "Bearer " + token);
+		if (token.size() > 0) {
+			//request.header("Authorization", "Bearer " + token);
+			request.headers(token);
+			
 		}
 
 		if (!(paramsMap == null)) {
@@ -131,6 +139,9 @@ public class RestClient {
 		} else if 
 			(contentType.equalsIgnoreCase("TEXT")) {
 						request.contentType(ContentType.TEXT);
+		}else if 
+			(contentType.equalsIgnoreCase("multipart")) {
+			request.multiPart("image", new File("C:\\Users\\ASHUTOSH SINGH\\Desktop\\TestNg-Issue\\imgur_1.jpeg"));
 		}
 	}
 		
