@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>TestNG:  Rest API regression Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Rest API regression Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>13/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Sep 08 12:33:00 IST 2020</td>
+</tr>
+<tr><td>Total time:</td><td>41 seconds (41880 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: Priya, priya@msn.usa123, Female, Active</td>
+<td></td>
+<td>5</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: Neha, neha008b@12gmail.com, Female, Active</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: peeyush, peeyush@yah12oo.india, Male, Inactive</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: manoj, manoj_verma@yahoo.g12.india, Male, Active</td>
+<td></td>
+<td>4</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: pallavi, pallavi.india@ac.indiaa.in, Female, Inactive</td>
+<td></td>
+<td>2</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: Sampath, Sampath@hotmail.ind1.us, Male, Active</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: ramesh, ramesh.r123g@google.india, Male, Inactive</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.CreateUserTest.createUserAPIPOSTTest()'><b>createUserAPIPOSTTest</b><br>Test class: com.qa.api.gorest.tests.CreateUserTest<br>Parameters: aditya, aditya@yahoo.us.in, Male, Active</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.CreateUserTest@4b53f538</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.GetImgurAPITest.getAccountBlockStatusTest()'><b>getAccountBlockStatusTest</b><br>Test class: com.qa.api.gorest.tests.GetImgurAPITest</td>
+<td></td>
+<td>5</td>
+<td>com.qa.api.gorest.tests.GetImgurAPITest@4bb4de6a</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.GetImgurAPITest.getAccountImagesTest()'><b>getAccountImagesTest</b><br>Test class: com.qa.api.gorest.tests.GetImgurAPITest</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.GetImgurAPITest@4bb4de6a</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.GetUserTest.getAllUserListAPITest()'><b>getAllUserListAPITest</b><br>Test class: com.qa.api.gorest.tests.GetUserTest</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.GetUserTest@134593bf</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.GetUserTest.getUserWithQueryParamsAPITest()'><b>getUserWithQueryParamsAPITest</b><br>Test class: com.qa.api.gorest.tests.GetUserTest</td>
+<td></td>
+<td>3</td>
+<td>com.qa.api.gorest.tests.GetUserTest@134593bf</td></tr>
+<tr>
+<td title='com.qa.api.gorest.tests.GetImgurAPITest.uploadImagePostAPITest()'><b>uploadImagePostAPITest</b><br>Test class: com.qa.api.gorest.tests.GetImgurAPITest</td>
+<td></td>
+<td>6</td>
+<td>com.qa.api.gorest.tests.GetImgurAPITest@4bb4de6a</td></tr>
+</table><p>
+</body>
+</html>
