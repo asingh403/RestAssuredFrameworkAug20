@@ -9,8 +9,15 @@ import org.testng.annotations.Test;
 import com.qa.gorest.restclient.RestClient;
 import com.qa.gorest.util.Token;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.response.Response;
 
+@Epic("Get User Imgur user BLOCK status api feature implementation.....")
+@Feature("Get User Imgur api feature.....")
 public class GetImgurAPITest {
 	
 	Map<Object, Object> tokenMap;
@@ -28,7 +35,9 @@ public class GetImgurAPITest {
 	
 	
 	
-	@Test
+	@Test(priority = 1)
+	@Description("Get the User current status")
+	@Severity(SeverityLevel.BLOCKER)
 	public void getAccountBlockStatusTest() {
 		
 		String baseURI = "https://api.imgur.com/account";
@@ -41,7 +50,9 @@ public class GetImgurAPITest {
 		System.out.println(response.prettyPrint());
 		
 	}
-	@Test
+	@Test(priority = 2)
+	@Description("Get the list of the user having the number of Imgaes having")
+	@Severity(SeverityLevel.NORMAL)
 	public void getAccountImagesTest() {
 		
 		String baseURI = "https://api.imgur.com";

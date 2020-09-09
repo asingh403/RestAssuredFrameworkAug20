@@ -7,8 +7,16 @@ import org.testng.annotations.Test;
 
 import com.qa.gorest.restclient.RestClient;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.response.Response;
 
+
+@Epic("Get User Imgur user BLOCK status api feature implementation.....")
+@Feature("Get User Imgur api feature.....")
 public class GetUserTest {
 	
 	String baseURI = "https://gorest.co.in";
@@ -17,6 +25,8 @@ public class GetUserTest {
 	
 	
 	@Test(priority = 1)
+	@Description("Get the User current status")
+	@Severity(SeverityLevel.NORMAL)
 	public void getAllUserListAPITest() {
 		Map<String, String> authTokenMap = new HashMap<String, String>();
 		authTokenMap.put("Authorization", "Bearer "+ token);
@@ -28,6 +38,8 @@ public class GetUserTest {
 	}
 	
 	@Test(priority = 2)
+	@Description("Get the User existing on every pagination...Very the all user list on per page on GET Call")
+	@Severity(SeverityLevel.CRITICAL)
 	public void getUserWithQueryParamsAPITest() {
 		Map<String, String> authTokenMap = new HashMap<String, String>();
 		authTokenMap.put("Authorization", "Bearer "+ token);
